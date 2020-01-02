@@ -1,0 +1,14 @@
+form{
+    width: 100%;
+     justify-content: center;
+}
+input[type=text]{
+    text-align: center;
+}
+input[type=number]{
+    text-align: center;
+}
+hr{
+    margin-top:100px;
+    margin-bottom: 30px;
+}
