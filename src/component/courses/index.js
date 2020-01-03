@@ -11,15 +11,15 @@ function Form() {
     const nameRef = useRef();
 
     // all counter
-    const [timeCounter , setTimeCounter] =useState(0);
+    const [timeCounter , setTimeCounter] =useState(getLocalStorage("timeCounter"));
     const [nameCounter  , setNameCounter] = useState(0);
     const [conditionCounter , setConditionCounter] = useState(0);
-
+    const [allCoure , setAllCourse] = useState(getLocalStorage("allCourse"));
     
 
     // input list
 
-    const [list , setList] = useState(getLocalStorage());
+    const [list , setList] = useState(getLocalStorage("list"));
 
     // handle submit
      function handleSubmit(e){
@@ -30,9 +30,9 @@ function Form() {
          }
         const newCourse = [...list  , {name , time , condition:false}]
         setList(newCourse);
-        setNameCounter((ps)=>ps+ 1);
-        setTimeCounter((ps)=>Number(ps) + Number(time));
         
+        setTimeCounter(Number(timeCounter) + Number(time));
+        setAllCourse(Number(allCoure) + 1);
         setName('');
         setTime('');
         nameRef.current.focus();
@@ -45,6 +45,8 @@ function Form() {
          const oldList = [...list];
          const newList = oldList.filter((_ , i)=> i !== index);
          setList(newList);
+         setTimeCounter( Number(timeCounter) - Number(list[index].time));
+         setAllCourse(Number(allCoure) - 1);
          
      }
 
@@ -59,12 +61,14 @@ function Form() {
      function saveLocalStorage(){
         
          window.localStorage.setItem("list" , JSON.stringify(list));
+         window.localStorage.setItem("timeCounter" , JSON.stringify(timeCounter));
+         window.localStorage.setItem("allCourse" , JSON.stringify(allCoure));
      }
     
     //get local storage
-    function getLocalStorage(){
+    function getLocalStorage(value){
        
-        return window.localStorage.getItem("list") ? JSON.parse(window.localStorage.getItem("list")):[];
+        return window.localStorage.getItem(value) ? JSON.parse(window.localStorage.getItem(value)):[];
     }
 
     //handleChangeSelect
@@ -81,19 +85,7 @@ function Form() {
     }
 
     
-    // all time 
-    let counter = 0
-    function handleAllTime(){
-        
-        const alltime = list.map(
-            (li)=>{
-                counter = li.time
-            }
-        )
-    }
-   
-
-     
+  
     return (
     <InputContext.Provider value={sendValue}>
         <div>
@@ -123,13 +115,18 @@ function Form() {
                                         
                         </button>
                         <button type="button" className="btn btn-primary mx-4">
-                        <span className="badge badge-light mr-2">{timeCounter}</span>
+                        <span className="badge badge-light mr-2">{nameCounter}</span>
                                   درس های تمام شده 
                                         
                         </button>
                         <button type="button" className="btn btn-primary">
-                        <span className="badge badge-light mr-2">{timeCounter}</span>
+                        <span className="badge badge-light mr-2 ">{conditionCounter}</span>
                                   درس های تمام نشده 
+                                        
+                        </button>
+                        <button type="button" className="btn btn-primary ml-4">
+                        <span className="badge badge-light mr-2">{allCoure}</span>
+                                     تعداد کل دروس 
                                         
                         </button>
             </div>
