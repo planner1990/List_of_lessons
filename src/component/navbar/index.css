@@ -1,0 +1,17 @@
+@keyframes myAnimation {
+    from{
+        margin-left: 0;
+    }
+    to{
+        margin-left: 20px;
+    }
+}
+.navbar-brand{
+   
+    animation-name: myAnimation;
+    animation-duration: 1s;
+    animation-timing-function:linear;
+    
+    animation-iteration-count: infinite;
+    
+}

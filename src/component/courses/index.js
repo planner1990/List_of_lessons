@@ -5,19 +5,19 @@ import './index.css';
 
 function Form() {
 
-    // hooks for inputs
+    // input states
     const [name  , setName] = useState('');
     const [time , setTime] = useState(0);
     const nameRef = useRef();
 
-    // all counter
+    // counter states
     const [timeCounter , setTimeCounter] =useState(getLocalStorage("timeCounter"));
-    const [nameCounter  , setNameCounter] = useState(0);
-    const [conditionCounter , setConditionCounter] = useState(0);
+    const [completeCounter , setCompleteCounter] = useState(0);
+    const [notCompleteCounter , setNotCompleteCounter] = useState(0);
     const [allCoure , setAllCourse] = useState(getLocalStorage("allCourse"));
     
 
-    // input list
+    // list states
 
     const [list , setList] = useState(getLocalStorage("list"));
 
@@ -25,19 +25,36 @@ function Form() {
      function handleSubmit(e){
          e.preventDefault();
          if(time > 24 || time < 1 ){
-             alert("وقت باید بین 1 تا 24 باشد");
+            Alert("زمان باید بین 1 الی 24 باشد");
              return;
          }
         const newCourse = [...list  , {name , time , condition:false}]
         setList(newCourse);
         
+        if(timeCounter >= 24 ){
+            Alert("بیشتر از 24 ساعت در روز امکان پذیر نیست");
+            return;
+        }
         setTimeCounter(Number(timeCounter) + Number(time));
+        
+
         setAllCourse(Number(allCoure) + 1);
         setName('');
         setTime('');
         nameRef.current.focus();
         
         
+     }
+
+     // alert 
+     function Alert(message  ){
+         
+        document.getElementById('alert').style.display = 'inline-block';
+        document.getElementById('alert').textContent = message;
+
+         setTimeout(() => {
+             document.getElementById('alert').style.display = 'none';
+         }, 3000);
      }
 
      // handle remove
@@ -49,6 +66,8 @@ function Form() {
          setAllCourse(Number(allCoure) - 1);
          
      }
+
+
 
      useEffect( ()=>{
          saveLocalStorage();
@@ -103,24 +122,27 @@ function Form() {
                 value={time}
                 /></div>
                 <button className="btn btn-block btn-success mt-4 mb-2">اضافه کردن به لیست</button>
+                <div className="alert alert-danger" id="alert">
+                    {/* alert */} 
+                </div>
             </form><hr className="bg-danger "/>
                     <div className=" py-3 bg-secondary bg-light">
                              <h1 className="text-center">لیست دروس</h1>
                     </div>
             
             <div className="badges  my-3 mx-auto">
-                         <button type="button" className="btn btn-primary">
-                         <span className="badge badge-light mr-2">{timeCounter}</span>
+                         <button id="clock" type="button" className="btn btn-primary">
+                         <span  className="badge badge-light mr-2">{timeCounter}</span>
                                 کل ساعات مطالعه 
                                         
                         </button>
                         <button type="button" className="btn btn-primary mx-4">
-                        <span className="badge badge-light mr-2">{nameCounter}</span>
+                        <span className="badge badge-light mr-2">{completeCounter}</span>
                                   درس های تمام شده 
                                         
                         </button>
                         <button type="button" className="btn btn-primary">
-                        <span className="badge badge-light mr-2 ">{conditionCounter}</span>
+                        <span className="badge badge-light mr-2 ">{notCompleteCounter}</span>
                                   درس های تمام نشده 
                                         
                         </button>
