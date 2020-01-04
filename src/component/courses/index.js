@@ -26,15 +26,17 @@ function Form() {
          e.preventDefault();
          if(time > 24 || time < 1 ){
             Alert("زمان باید بین 1 الی 24 باشد");
-             return;
-         }
-        const newCourse = [...list  , {name , time , condition:false}]
-        setList(newCourse);
+            
+         }else{
+       
         
-        if(timeCounter >= 24 ){
+        if(timeCounter > 24 ){
             Alert("بیشتر از 24 ساعت در روز امکان پذیر نیست");
-            return;
-        }
+            
+        }else{
+         const newCourse = [...list  , {name , time , condition:false}]
+         setList(newCourse);
+
         setTimeCounter(Number(timeCounter) + Number(time));
         
 
@@ -42,7 +44,8 @@ function Form() {
         setName('');
         setTime('');
         nameRef.current.focus();
-        
+        }
+    }
         
      }
 
