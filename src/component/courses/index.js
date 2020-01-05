@@ -24,21 +24,22 @@ function Form() {
     // handle submit
      function handleSubmit(e){
          e.preventDefault();
-         if(time > 24 || time < 1 ){
-            Alert("زمان باید بین 1 الی 24 باشد");
-            
-         }else{
-       
-        
-        if(timeCounter >= 24 ){
+         if(timeCounter >= 24 ){
             Alert("بیشتر از 24 ساعت در روز امکان پذیر نیست");
             
+        
+         }else{
+            if(time > 24 || time < 1 ){
+                Alert("زمان باید بین 1 الی 24 باشد");
+                
+        
+      
         }else{
          const newCourse = [...list  , {name , time , condition:false}]
          setList(newCourse);
 
         setTimeCounter(Number(timeCounter) + Number(time));
-        
+        setCompleteCounter(Number(completeCounter) + 1);
 
         setAllCourse(Number(allCoure) + 1);
         setName('');
@@ -97,6 +98,11 @@ function Form() {
     function handleChangeSelect(index){
         const oldList = [...list];
         oldList[index].condition = !oldList[index].condition;
+        if(oldList[index].condition){
+            setCompleteCounter(Number(completeCounter) - 1);
+        }else{
+            setCompleteCounter(Number(completeCounter) + 1);
+        }
         setList(oldList);
     }
      
@@ -141,12 +147,12 @@ function Form() {
                         </button>
                         <button type="button" className="btn btn-primary mx-4">
                         <span className="badge badge-light mr-2">{completeCounter}</span>
-                                  درس های تمام شده 
+                                  درس های تمام نشده 
                                         
                         </button>
                         <button type="button" className="btn btn-primary">
                         <span className="badge badge-light mr-2 ">{notCompleteCounter}</span>
-                                  درس های تمام نشده 
+                                  درس های تمام شده 
                                         
                         </button>
                         <button type="button" className="btn btn-primary ml-4">
