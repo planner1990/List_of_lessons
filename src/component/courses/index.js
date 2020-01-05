@@ -39,6 +39,7 @@ function Form() {
          setList(newCourse);
 
         setTimeCounter(Number(timeCounter) + Number(time));
+
         setCompleteCounter(Number(completeCounter) + 1);
 
         setAllCourse(Number(allCoure) + 1);
@@ -98,10 +99,14 @@ function Form() {
     function handleChangeSelect(index){
         const oldList = [...list];
         oldList[index].condition = !oldList[index].condition;
+
+        // complete and not complete course 
         if(oldList[index].condition){
             setCompleteCounter(Number(completeCounter) - 1);
+            setNotCompleteCounter(Number(notCompleteCounter  + 1));
         }else{
             setCompleteCounter(Number(completeCounter) + 1);
+            setNotCompleteCounter(Number(notCompleteCounter  - 1));
         }
         setList(oldList);
     }
