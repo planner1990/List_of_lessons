@@ -24,29 +24,28 @@ function Form() {
     // handle submit
      function handleSubmit(e){
          e.preventDefault();
-         if(timeCounter >= 24 ){
-            Alert("بیشتر از 24 ساعت در روز امکان پذیر نیست");
+         if(time > 24 || time < 1 ){
+            Alert("زمان باید بین 1 الی 24 باشد");
+     
             
         
          }else{
-            if(time > 24 || time < 1 ){
-                Alert("زمان باید بین 1 الی 24 باشد");
-                
-        
-      
-        }else{
-         const newCourse = [...list  , {name , time , condition:false}]
-         setList(newCourse);
+               if(timeCounter >= 24 ){
+            Alert("بیشتر از 24 ساعت در روز امکان پذیر نیست");
+ 
+                        }else{
+                        const newCourse = [...list  , {name , time , condition:false}]
+                        setList(newCourse);
 
-        setTimeCounter(Number(timeCounter) + Number(time));
+                        setTimeCounter(Number(timeCounter) + Number(time));
 
-        setCompleteCounter(Number(completeCounter) + 1);
+                        setCompleteCounter(Number(completeCounter) + 1);
 
-        setAllCourse(Number(allCoure) + 1);
-        setName('');
-        setTime('');
-        nameRef.current.focus();
-        }
+                        setAllCourse(Number(allCoure) + 1);
+                        setName('');
+                        setTime('');
+                        nameRef.current.focus();
+                        }
     }
         
      }
