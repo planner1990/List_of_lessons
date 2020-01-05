@@ -66,8 +66,18 @@ function Form() {
          const oldList = [...list];
          const newList = oldList.filter((_ , i)=> i !== index);
          setList(newList);
+
+         // set counter time and all course
          setTimeCounter( Number(timeCounter) - Number(list[index].time));
          setAllCourse(Number(allCoure) - 1);
+
+         // set compelete and notcomplete course
+         if(oldList[index].condition){
+            setNotCompleteCounter ( Number(notCompleteCounter) - 1 );
+            
+         }else{
+            setCompleteCounter ( Number(completeCounter) - 1 );
+         }
          
      }
 
