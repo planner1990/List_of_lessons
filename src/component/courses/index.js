@@ -30,7 +30,7 @@ function Form() {
          }else{
        
         
-        if(timeCounter > 24 ){
+        if(timeCounter >= 24 ){
             Alert("بیشتر از 24 ساعت در روز امکان پذیر نیست");
             
         }else{
@@ -50,7 +50,7 @@ function Form() {
      }
 
      // alert 
-     function Alert(message  ){
+     function Alert(message){
          
         document.getElementById('alert').style.display = 'inline-block';
         document.getElementById('alert').textContent = message;
