@@ -10,7 +10,7 @@ function Course({name , index , time , condition , remove , changeSelect}) {
                     <button className={`btn btn-block ${condition?'btn-success':'btn-warning'}`} 
                     onClick={()=>changeSelect(index)}>{condition?'تمام شده ':'تمام نشده'}</button>
                 </td>
-                <td onClick={()=>remove(index)} style={{cursor:'pointer'}} className="text-danger"><i className="fa fa-trash"></i></td>
+                <td  className="text-danger"><i onClick={()=>remove(index)} style={{cursor:'pointer'}} className="fa fa-trash"></i></td>
                 
             </tr>
        

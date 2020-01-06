@@ -12,8 +12,8 @@ function Form() {
 
     // counter states
     const [timeCounter , setTimeCounter] =useState(getLocalStorage("timeCounter"));
-    const [completeCounter , setCompleteCounter] = useState(0);
-    const [notCompleteCounter , setNotCompleteCounter] = useState(0);
+    const [completeCounter , setCompleteCounter] = useState(getLocalStorage("completeCounter"));
+    const [notCompleteCounter , setNotCompleteCounter] = useState(getLocalStorage("notCompleteCounter"));
     const [allCoure , setAllCourse] = useState(getLocalStorage("allCourse"));
     
 
@@ -96,6 +96,8 @@ function Form() {
          window.localStorage.setItem("list" , JSON.stringify(list));
          window.localStorage.setItem("timeCounter" , JSON.stringify(timeCounter));
          window.localStorage.setItem("allCourse" , JSON.stringify(allCoure));
+         window.localStorage.setItem("notCompleteCounter" , JSON.stringify(notCompleteCounter));
+         window.localStorage.setItem("completeCounter" , JSON.stringify(completeCounter));
      }
     
     //get local storage
