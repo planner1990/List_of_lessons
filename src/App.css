@@ -3,14 +3,23 @@
     src:url('./fonts/Nazanin/Nazanin.TTF')
 }
 .app{
-    box-shadow: 5px 10px 18px black;
+    box-shadow: 0 0 30px  #924e0d  ;
     padding: 10px 0;
     font-weight: bold;
     /* font-family: 'myfont'; */
 }
+html{
+    scroll-behavior: smooth;
+    
+}
 #root{
-    background-color: antiquewhite;
+    background-color: #2e1c0a;
     padding: 10px 50px;
     
+    
+}
+
+.app .card{
+    box-shadow: 0 0 30px  #924e0d inset ;
     
 }

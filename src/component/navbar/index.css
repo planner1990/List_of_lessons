@@ -1,17 +1,18 @@
 @keyframes myAnimation {
     from{
-        margin-left: 0;
+        transform: rotateY(0deg);
+        
     }
     to{
-        margin-left: 20px;
+        transform: rotateY(360deg);
     }
 }
 .navbar-brand{
-   
+    text-shadow: 3px 3px 10px black;
     animation-name: myAnimation;
-    animation-duration: 1s;
+    animation-duration: 7s;
     animation-timing-function:linear;
-    
+    animation-direction: normal;
     animation-iteration-count: infinite;
     
 }

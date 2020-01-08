@@ -8,7 +8,7 @@ function Course({name , index , time , condition , remove , changeSelect}) {
                 <td>{time}</td>
                 <td>
                     <button className={`btn btn-block ${condition?'btn-success':'btn-warning'}`} 
-                    onClick={()=>changeSelect(index)}>{condition?'تمام شده ':'تمام نشده'}</button>
+                    onClick={()=>changeSelect(index)}>{condition?'خوانده شده ':'خوانده نشده'}</button>
                 </td>
                 <td  className="text-danger"><i onClick={()=>remove(index)} style={{cursor:'pointer'}} className="fa fa-trash"></i></td>
                 

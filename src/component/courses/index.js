@@ -132,8 +132,8 @@ function Form() {
   
     return (
     <InputContext.Provider value={sendValue}>
-        <div>
-            <form onSubmit={handleSubmit} className="form-inline " id="add">
+        <div id="add">
+            <form onSubmit={handleSubmit} className="form-inline " >
                 
                 <div className="form-group px-1">نام درس
                 <input ref={nameRef} required type="text"  className="form-control ml-2"
@@ -146,7 +146,7 @@ function Form() {
                 onChange={(e)=>setTime(e.target.value)} 
                 value={time}
                 /></div>
-                <button className="btn btn-block btn-success mt-4 mb-2">اضافه کردن به لیست</button>
+                <button className="btn btn-block btn-dark mb-3 mt-4 ">اضافه کردن به لیست</button>
                 <div className="alert alert-danger" id="alert">
                     {/* alert */} 
                 </div>
@@ -163,12 +163,12 @@ function Form() {
                         </button>
                         <button type="button" className="btn btn-primary mx-4">
                         <span className="badge badge-light mr-2">{completeCounter}</span>
-                                  درس های تمام نشده 
+                                  درس های خوانده نشده 
                                         
                         </button>
                         <button type="button" className="btn btn-primary">
                         <span className="badge badge-light mr-2 ">{notCompleteCounter}</span>
-                                  درس های تمام شده 
+                                  درس های خوانده شده 
                                         
                         </button>
                         <button type="button" className="btn btn-primary ml-4">
